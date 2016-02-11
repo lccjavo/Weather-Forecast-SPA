@@ -1,0 +1,13 @@
+<a href="#/">Back to home</a>
+<br>
+Forecast {{ city }}
+<hr/>
+Days | <a href="#/forecast/2" ng-class="{'bg-primary': days==2}">2</a> | <a href="#/forecast/5" ng-class="{'bg-primary': days==5}">5</a> | <a href="#/forecast/7" ng-class="{'bg-primary': days==7}">7</a>
+<hr/>
+<div ng-repeat="w in weatherResults.list">
+    <div class="row">
+        <div class="col-md-12">
+            <panel-view weather-object="w" convert-to-date="convertToDate(dt)" date-format="d MMM, y"></panel-view>
+        </div>
+    </div>
+</div>
