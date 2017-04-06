@@ -9,32 +9,39 @@ weatherApp.controller('homeController', ['$scope', 'cityService', function($scop
     
 }]);
 
-weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParams', 'cityService', function($scope, $resource, $routeParams, cityService) {
+weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParams', 'cityService', '$http', '$sce', function($scope, $resource, $routeParams, cityService, $http, $sce) {
     
     $scope.city=cityService.city;
     $scope.days=$routeParams.days || 2;
-    
-    $scope.weatherAPI= $resource(
-        "http://api.openweathermap.org/data/2.5/forecast/daily", 
-        {callback: "JSON_CALLBACK"},
-        {get: {method: "JSONP"}}    
-    );
-    
-    $scope.weatherResults=$scope.weatherAPI.get(
-        {
+
+    var url = "http://api.openweathermap.org/data/2.5/forecast/daily";
+    $sce.trustAsResourceUrl(url);
+
+    moment.locale('es');  
+
+    $http({
+      method: 'GET',
+      url: url,
+      params: {
          q: $scope.city, 
          cnt: $scope.days,
          units: "metric",
-         appid: "44db6a862fba0b067b1930da0d769e98"
+         appid: "52293df3f05e4dff10211d72c40fca6f"
+        },
+    }).then(function successCallback(response) {
+        $scope.weatherResults = response.data;
+        for(i=0; i<response.data.list.length; i++){
+            $scope.weatherResults.list[i].date = $scope.convertToDate($scope.weatherResults.list[i].dt);
+            $scope.weatherResults.list[i].dateMoment = moment($scope.weatherResults.list[i].date);
         }
-    );
-    
-    console.log($scope.weatherResults);
+        
+        console.log($scope.weatherResults);;
+      }, function errorCallback(response) {
+         console.log(response);
+      });
     
     $scope.convertToDate= function(dt){
         return new Date(dt*1000);
-    }
-    
-    
+    }    
     
 }]);
