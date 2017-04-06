@@ -1,8 +1,19 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <!-- {{ convertToDate({dt:weatherObject.dt}) | date: dateFormat }} -->
-            {{ weatherObject.dateMoment.format('LL') }}
+        	{{ weatherObject.date }}
+        	<br>
+        	 {{ getNameByDay({day: weatherObject.date.getDay()}) }} {{ weatherObject.date.getDate() }}  {{ getNameByMonth({month: weatherObject.date.getMonth()}) }} {{ weatherObject.date.getFullYear() }}
+        	<br>
+            {{ weatherObject.date | date: 'fullDate' }}
+            <br>
+            {{ weatherObject.date | date: 'medium' }}
+            <br>
+            {{ weatherObject.dateMoment.format('LL') }}	
+            <br>
+            {{ weatherObject.dateMoment.format('LLLL') }}	
+            <br>
+            {{ weatherObject.dateMoment.fromNow() }}
         </h3>
     </div>
     <div class="panel-body">

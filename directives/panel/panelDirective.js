@@ -6,6 +6,8 @@ weatherApp.directive("panelView", function(){
         scope: {
             weatherObject: "=",
             convertToDate: "&",
+            getNameByDay: "&",
+            getNameByMonth: "&",
             dateFormat: "@"
         }
     }

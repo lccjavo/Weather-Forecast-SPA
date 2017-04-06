@@ -1,5 +1,8 @@
 //var weatherApp = angular.module('weatherApp');
 // CONTROLLERS
+//javascript puro: https://www.w3schools.com/js/js_date_methods.asp
+//filtros de angular https://docs.angularjs.org/api/ng/filter/date
+//moment https://momentjs.com/
 weatherApp.controller('homeController', ['$scope', 'cityService', function($scope, cityService) {
     
     $scope.city=cityService.city;
@@ -17,7 +20,7 @@ weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParam
     var url = "http://api.openweathermap.org/data/2.5/forecast/daily";
     $sce.trustAsResourceUrl(url);
 
-    moment.locale('es');  
+    moment.locale('en');  
 
     $http({
       method: 'GET',
@@ -42,6 +45,38 @@ weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParam
     
     $scope.convertToDate= function(dt){
         return new Date(dt*1000);
-    }    
+    }
+
+    $scope.getNameByDay = function(day){
+        switch(day){
+            case 0: return 'Domingo'; break;
+            case 1: return 'Lunes'; break;
+            case 2: return 'Martes'; break;
+            case 3: return 'Miercoles'; break;
+            case 4: return 'Jueves'; break;
+            case 5: return 'Viernes'; break;
+            case 6: return 'Sabado'; break;
+            default: return 'Un dia de estos'; break;
+        }
+    }
     
+    $scope.getNameByMonth = function(month){
+        switch(month){
+            case 0: return 'Enero'; break;
+            case 1: return 'Febrero'; break;
+            case 2: return 'Marzo'; break;
+            case 3: return 'Abril'; break;
+            case 4: return 'Mayo'; break;
+            case 5: return 'Junio'; break;
+            case 6: return 'Julio'; break;
+            case 7: return 'Agosto'; break;
+            case 8: return 'Septiembre'; break;
+            case 9: return 'Octubre'; break;
+            case 10: return 'Noviembre'; break;
+            case 11: return 'Diciembre'; break;
+            default: return 'Un mes de estos'; break;
+        }
+    }
+    
+
 }]);
