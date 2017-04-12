@@ -1,19 +1,27 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
+
+        <!-- Code assets to work with different dates 
+
+            Just display the plain javascript Date object
         	{{ weatherObject.date }}
-        	<br>
-        	 {{ getNameByDay({day: weatherObject.date.getDay()}) }} {{ weatherObject.date.getDate() }}  {{ getNameByMonth({month: weatherObject.date.getMonth()}) }} {{ weatherObject.date.getFullYear() }}
-        	<br>
+        	
+            Using the the properties of javascript Date object, and custom functions to retrieve a custom human readable date
+        	{{ getNameByDay({day: weatherObject.date.getDay()}) }} {{ weatherObject.date.getDate() }}  {{ getNameByMonth({month: weatherObject.date.getMonth()}) }} {{ weatherObject.date.getFullYear() }}
+        	
+            Using angular filters with the javascript Date object
             {{ weatherObject.date | date: 'fullDate' }}
-            <br>
             {{ weatherObject.date | date: 'medium' }}
-            <br>
+            
+            Using a moment object to display the desire format
             {{ weatherObject.dateMoment.format('LL') }}	
-            <br>
             {{ weatherObject.dateMoment.format('LLLL') }}	
-            <br>
+            
+            Using a moment object to display a human readable of how many time left to reach the date displayed
             {{ weatherObject.dateMoment.fromNow() }}
+         -->
+         {{ weatherObject.dateMoment.format('LLLL') }}  
         </h3>
     </div>
     <div class="panel-body">

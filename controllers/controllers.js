@@ -3,6 +3,7 @@
 //javascript puro: https://www.w3schools.com/js/js_date_methods.asp
 //filtros de angular https://docs.angularjs.org/api/ng/filter/date
 //moment https://momentjs.com/
+//to get the AP key for openweather map https://home.openweathermap.org/api_keys
 weatherApp.controller('homeController', ['$scope', 'cityService', function($scope, cityService) {
     
     $scope.city=cityService.city;
@@ -47,6 +48,7 @@ weatherApp.controller('forecastController', ['$scope', '$resource', '$routeParam
         return new Date(dt*1000);
     }
 
+    
     $scope.getNameByDay = function(day){
         switch(day){
             case 0: return 'Domingo'; break;
