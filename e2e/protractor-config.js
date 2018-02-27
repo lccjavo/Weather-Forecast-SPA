@@ -13,7 +13,7 @@ https://sites.google.com/a/chromium.org/chromedriver/downloads
 
  $ protractor --version
 
- whis will install a webdriver-manager with the chromedriver 2.26
+ this will install a webdriver-manager with the chromedriver 2.26
  we need to update to the current chrome browser version
 
  $  sudo webdriver-manager update --versions.chrome=2.35
@@ -34,16 +34,16 @@ https://sites.google.com/a/chromium.org/chromedriver/downloads
 exports.config = {
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['../e2e/login.js'],
+  specs: ['../e2e/forecast.js'],
   onPrepare: function() {
     browser.driver.get("http://localhost:8000");
 
     //browser.driver.findElement(by.className('login')).click();
 
-    browser.driver.findElement(by.name('city')).sendKeys("");
-    browser.driver.findElement(by.name('city')).sendKeys("San Diego");
+    browser.driver.findElement(by.name('city')).clear();
+    browser.driver.findElement(by.name('city')).sendKeys("San Diego");    
     browser.driver.findElement(by.id('protractorButton')).click();
-
+    browser.driver.sleep(2000);
     //browser.driver.findElement(by.id('signin')).click();
 
    }
