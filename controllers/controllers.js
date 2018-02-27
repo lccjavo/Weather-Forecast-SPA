@@ -4,12 +4,16 @@
 //filtros de angular https://docs.angularjs.org/api/ng/filter/date
 //moment https://momentjs.com/
 //to get the AP key for openweather map https://home.openweathermap.org/api_keys
-weatherApp.controller('homeController', ['$scope', 'cityService', function($scope, cityService) {
+weatherApp.controller('homeController', ['$scope', 'cityService', '$location', function($scope, cityService, $location) {
     
     $scope.city=cityService.city;
     $scope.$watch('city', function(){
         cityService.city=$scope.city;
     })
+
+    $scope.goToForecast = function(){
+        $location.path( "/forecast" );
+    }
     
 }]);
 

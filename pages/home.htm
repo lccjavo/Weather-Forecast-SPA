@@ -2,8 +2,9 @@
     <div class="col-md-6 col-md-offset-3">
         <h4>Forecast by City</h4>
         <div class="form-group">
-            <input type="text" ng-model="city" class="form-control" />
+            <input name="city" type="text" ng-model="city" class="form-control" />
         </div>
-        <a href="#/forecast" class="btn btn-primary">Get Forecast</a>
+        <!-- <a href="#/forecast" class="btn btn-primary protractorButton">Get Forecast</a> -->
+        <button id="protractorButton" class="btn btn-primary" ng-click="goToForecast()">Get Forecast</button>
     </div>
 </div>
